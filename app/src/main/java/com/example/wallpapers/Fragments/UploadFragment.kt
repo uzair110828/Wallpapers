@@ -25,12 +25,10 @@ class UploadFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         var view =  inflater.inflate(R.layout.fragment_upload, container, false)
-        val typeface = Typeface.createFromAsset(requireActivity().assets, "font/ubuntu_regular.ttf")
 
         return AboutPage(requireContext())
             .isRTL(false)
             .enableDarkMode(false)
-            .setCustomFont(typeface) // or Typeface
             .setDescription(getString(R.string.main_string))
             .setImage(R.drawable.wall)
             .addGroup("Connect with us")
