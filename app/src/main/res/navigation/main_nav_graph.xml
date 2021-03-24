@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.wallpapers.Fragments.MainFragment"
+        android:label="Photos"
+
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_uploadFragment2"
+            app:popUpToInclusive="true"
+            app:destination="@id/uploadFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/uploadFragment"
+        android:name="com.example.wallpapers.Fragments.UploadFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_upload">
+        <action
+            android:id="@+id/action_uploadFragment_to_videosFragment2"
+            app:destination="@id/videosFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/videosFragment"
+        android:name="com.example.wallpapers.Fragments.VideosFragment"
+        android:label="Videos"
+        tools:layout="@layout/fragment_videos" >
+        <action
+            app:popUpToInclusive="true"
+            android:id="@+id/action_videosFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
