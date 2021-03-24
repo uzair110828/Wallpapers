@@ -24,7 +24,7 @@
         <item
             android:id="@+id/uploadFragment"
             android:icon="@drawable/information"
-            android:title="Info" />
+            android:title="About" />
     </group>
 
 
