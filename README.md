@@ -1,5 +1,5 @@
 # About
-“Wallpapers” is an android application to download the wallpapers and videos. Users who have an android phone & active internet connection can download the wallpaper and videos through this application.
+“Wallpapers” is an android application to download the wallpapers and videos. Users who have an android phone & active internet connection can download the wallpaper and videos through this application. In this application pexels api is used to fetch the videos and wallpapers.
 
 # Features
 - Download Wallpaper
