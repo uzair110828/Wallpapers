@@ -15,9 +15,10 @@
         android:roundIcon="@mipmap/w_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallpapers">
-        <activity android:name=".Activities.splash"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            >
+        <activity android:name=".Activities.category"></activity>
+        <activity
+            android:name=".Activities.splash"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,8 +36,7 @@
         </receiver>
 
         <activity android:name=".Activities.FullActivity" />
-        <activity android:name=".Activities.MainActivity">
-        </activity>
+        <activity android:name=".Activities.MainActivity"></activity>
     </application>
 
 </manifest>

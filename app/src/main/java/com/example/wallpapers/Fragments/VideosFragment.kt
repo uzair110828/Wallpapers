@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.AbsListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,13 +32,11 @@ class VideosFragment : Fragment() {
     var videoItems= ArrayList<VideoModel>()
     private lateinit var adapter:VideoAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
 
     }
-    override fun onStart() {
-        super.onStart()
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -100,6 +99,8 @@ class VideosFragment : Fragment() {
 
                             var url = objects.getString("url")
 
+                            var du = objects.getString("duration")
+
                             var image = objects.getString("image")
 
 
@@ -120,7 +121,7 @@ class VideosFragment : Fragment() {
 
 
 
-                            var v = VideoModel(user_name , link,user_url,image)
+                            var v = VideoModel(user_name , link,du.toInt(),user_url,image)
 
                             videoItems.add(v)
 

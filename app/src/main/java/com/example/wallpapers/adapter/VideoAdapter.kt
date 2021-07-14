@@ -4,6 +4,7 @@ package com.example.wallpapers.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,9 +30,12 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.video.VideoListener
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.concurrent.TimeUnit
+import kotlin.math.log
 
 
-class VideoAdapter(private val mVideoItems: List<VideoModel>, val context: Context) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(private val mVideoItems: List<VideoModel>, val context: Context) :
+    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         return VideoViewHolder(
             LayoutInflater.from(parent.context)
@@ -40,13 +44,13 @@ class VideoAdapter(private val mVideoItems: List<VideoModel>, val context: Conte
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        holder.setVideoData(mVideoItems.get(position),context)
+        holder.setVideoData(mVideoItems.get(position), context)
         holder.imageView.setOnClickListener {
-            val intent = Intent(context,FullScreenVideo::class.java)
-            intent.putExtra("url",mVideoItems.get(position).url)
-            intent.putExtra("user_url",mVideoItems.get(position).user_url)
-            intent.putExtra("name",mVideoItems.get(position).name)
-            intent.putExtra("image",mVideoItems.get(position).image)
+            val intent = Intent(context, FullScreenVideo::class.java)
+            intent.putExtra("url", mVideoItems.get(position).url)
+            intent.putExtra("user_url", mVideoItems.get(position).user_url)
+            intent.putExtra("name", mVideoItems.get(position).name)
+            intent.putExtra("image", mVideoItems.get(position).image)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
@@ -59,28 +63,49 @@ class VideoAdapter(private val mVideoItems: List<VideoModel>, val context: Conte
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var lottieAnimationView: LottieAnimationView
-          var imageView: ImageView = itemView.findViewById(R.id.videoViewItem)
-     var  cardView: CardView = itemView.findViewById(R.id.videoCard)
+        private lateinit var textView: TextView
+        var imageView: ImageView = itemView.findViewById(R.id.videoViewItem)
+        var cardView: CardView = itemView.findViewById(R.id.videoCard)
         fun setVideoData(videoModel: VideoModel, context: Context) {
 
             lottieAnimationView = itemView.findViewById(R.id.lottie_anim)
+            textView = itemView.findViewById(R.id.txtDu)
             cardView = itemView.findViewById(R.id.videoCard)
             Glide.with(context).load(videoModel.image)
                 .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
                         lottieAnimationView.visibility = View.GONE
                         return false
                     }
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
                         lottieAnimationView.visibility = View.GONE
                         return false
                     }
 
                 })
                 .into(imageView)
-
-
-
+            if (videoModel.duration < 59) {
+                if (videoModel.duration < 10) {
+                    textView.setText("00:0${videoModel.duration}")
+                } else {
+                    textView.setText("00:${videoModel.duration}")
+                }
+            } else {
+                val min = (videoModel.duration / 60) % 60
+                textView.setText("$min min")
+            }
 
 
         }

@@ -4,14 +4,15 @@
         android:id="@+id/mainFragment"
         android:icon="@drawable/ic_photo"
         android:title="Photos" />
+    <item
+        android:id="@+id/uploadFragment"
+        android:icon="@drawable/category"
+        android:title="Categories" />
 
     <item
         android:id="@+id/videosFragment"
         android:icon="@drawable/ic_video"
         android:title="Videos" />
 
-    <item
-        android:id="@+id/uploadFragment"
-        android:icon="@drawable/information"
-        android:title="About" />
+
 </menu>

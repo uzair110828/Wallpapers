@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -26,7 +27,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 
-class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiverListener {
+class MainActivity : AppCompatActivity(), network_receiver.ConnectivityReceiverListener {
 
     private var snackBar: Snackbar? = null
     private lateinit var navController: NavController
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiver
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setSupportActionBar(binding.toolbar)
 
         registerReceiver(network_receiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
@@ -59,17 +61,8 @@ class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiver
         binding.navigationDrawer.setupWithNavController(navController)
 
 
-
-
-
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
     override fun onBackPressed() {
         if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
@@ -78,6 +71,7 @@ class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiver
             super.onBackPressed()
         }
     }
+
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         showNetworkMessage(isConnected)
     }
@@ -86,9 +80,14 @@ class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiver
         super.onResume()
         network_receiver.connectivityReceiverListener = this
     }
+
     private fun showNetworkMessage(isConnected: Boolean) {
         if (!isConnected) {
-            snackBar = Snackbar.make(findViewById(R.id.drawer), "You are offline", Snackbar.LENGTH_LONG) //Assume "rootLayout" as the root layout of every activity.
+            snackBar = Snackbar.make(
+                findViewById(R.id.drawer),
+                "You are offline",
+                Snackbar.LENGTH_LONG
+            ) //Assume "rootLayout" as the root layout of every activity.
             snackBar?.duration = BaseTransientBottomBar.LENGTH_INDEFINITE
             snackBar?.show()
         } else {
@@ -96,7 +95,6 @@ class MainActivity : AppCompatActivity() , network_receiver.ConnectivityReceiver
         }
     }
 
-   
 
 }
 

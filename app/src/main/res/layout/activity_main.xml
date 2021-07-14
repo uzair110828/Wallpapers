@@ -21,11 +21,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:popupTheme="@style/Platform.MaterialComponents.Light"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Photos"
         app:titleTextColor="#FFFFFF"
         />
 
@@ -75,5 +73,33 @@
         app:itemIconTint="@drawable/item_selected"
         app:itemTextColor="@drawable/item_selected"
         app:menu="@menu/navigation_drawer_menu"
-        />
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:text="Photos and Videos are Provided By Pexel API." />
+            <TextView
+                android:id="@+id/logou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="The App is Created By Uzair Arif." />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -16,12 +16,13 @@
             android:id="@+id/action_mainFragment_to_uploadFragment2"
             app:popUpToInclusive="true"
             app:destination="@id/uploadFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/uploadFragment"
         android:name="com.example.wallpapers.Fragments.UploadFragment"
-        android:label="About"
+        android:label="Categories"
         tools:layout="@layout/fragment_upload">
         <action
             android:id="@+id/action_uploadFragment_to_videosFragment2"
@@ -38,4 +39,9 @@
             android:id="@+id/action_videosFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainSearchFragment"
+        android:name="com.example.wallpapers.Fragments.MainSearchFragment"
+        android:label="Category Screen"
+        tools:layout="@layout/fragment_search_main" />
 </navigation>

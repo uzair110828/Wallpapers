@@ -9,6 +9,7 @@ import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -36,6 +37,7 @@ class FullScreenVideo : AppCompatActivity() {
     private lateinit var progressBar: LottieAnimationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = ActivityFullScreenVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         playerView = findViewById(R.id.videoView)
